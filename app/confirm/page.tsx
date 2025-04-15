@@ -63,7 +63,7 @@ export default function ConfirmPage() {
       <Card className="w-full max-w-lg mb-6">
         <CardContent>
           <p className="mb-4">
-            <span className="font-semibold">배송 지역:</span> {region}
+            <span className="font-semibold">배송 지점:</span> {region}
           </p>
           <Separator className="mb-8"/>
           <table className="w-full text-left">
@@ -96,7 +96,7 @@ export default function ConfirmPage() {
             </tbody>
           </table>
           <div className="mt-4 flex justify-end font-bold">
-            총액: {total.toLocaleString()}원
+            합계 금액: {total.toLocaleString()}원
           </div>
         </CardContent>
       </Card>
@@ -119,9 +119,9 @@ export default function ConfirmPage() {
             }}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>주문자 전화번호</FormLabel>
+                <FormLabel className="text-xl font-bold">받으시는 분 전화번호</FormLabel>
                 <FormControl>
-                  <Input placeholder="010-0000-0000" {...field} />
+                  <Input className="font-bold" placeholder="010-0000-0000" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

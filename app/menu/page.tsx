@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import BreadcrumbCustom from "@/components/BreadcrumbCustom";
 import { Separator } from "@/components/ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-const MENU_LIST: { 
+const FOOD_LIST: { 
   name: string; 
   price: number; 
   image: string; // public/images 폴더에 미리 넣어두세요
@@ -19,6 +20,32 @@ const MENU_LIST: {
   { name: "짬뽕", price: 10000, image: "/images/zzambong.png" },
   { name: "후라이드 치킨",  price: 20000, image: "/images/chicken.png" },
   { name: "양념 치킨",  price: 20000, image: "/images/chicken.png" },
+];
+
+const MART_LIST: { 
+    name: string; 
+    price: number; 
+    image: string; // public/images 폴더에 미리 넣어두세요
+}[] = [
+{ name: "생수1",   price: 1000, image: "/images/zazang.png" },
+{ name: "생수2",   price: 1000, image: "/images/tangsu.png" },
+{ name: "생수3",   price: 1000, image: "/images/bokbab.png" },
+{ name: "생수4",  price: 1000, image: "/images/zzambong.png" },
+{ name: "생수5",  price: 1000, image: "/images/chicken.png" },
+{ name: "생수6",  price: 1000, image: "/images/chicken.png" },
+];
+
+const EVENT_LIST: { 
+    name: string; 
+    price: number; 
+    image: string; // public/images 폴더에 미리 넣어두세요
+}[] = [
+{ name: "이벤트1", price: 1000, image: "/images/zazang.png" },
+{ name: "이벤트2", price: 3000, image: "/images/tangsu.png" },
+{ name: "이벤트3", price: 1000, image: "/images/bokbab.png" },
+{ name: "이벤트4", price: 1000, image: "/images/zzambong.png" },
+{ name: "이벤트5", price: 2000, image: "/images/chicken.png" },
+{ name: "이벤트6", price: 2000, image: "/images/chicken.png" },
 ];
 
 export default function MenuPage() {
@@ -39,12 +66,18 @@ export default function MenuPage() {
       <Separator className="mb-6"/>
       <h2 className="text-2xl font-bold mb-6">메뉴 선택</h2>
 
-      {/* 카드 그리드 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-        {MENU_LIST.map(menu => {
-          const qty = getQty(menu.name, menu.price);
-          return (
-            <Card key={menu.name} className="flex flex-col w-full max-w-sm">
+    <Tabs defaultValue="foods" className="w-full max-w-4xl">
+      <TabsList className="w-full justify-center">
+        <TabsTrigger value="foods" className="text-xl font-bold">음식</TabsTrigger>
+        <TabsTrigger value="marts"className="text-xl font-bold">물품</TabsTrigger>
+        <TabsTrigger value="events" className="text-xl font-bold">이벤트</TabsTrigger>
+      </TabsList>
+      <TabsContent value="foods">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+            {FOOD_LIST.map(menu => {
+            const qty = getQty(menu.name, menu.price);
+            return (
+              <Card key={menu.name} className="flex flex-col w-full max-w-sm">
               <div className="flex justify-center items-center">
                     <Image
                     src={menu.image}
@@ -56,34 +89,129 @@ export default function MenuPage() {
               </div>
               <CardContent className="flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold">{menu.name}</h3>
-                  <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
+                <h3 className="text-lg font-semibold">{menu.name}</h3>
+                <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                     <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => removeItem({ name: menu.name, price: menu.price })}
-                      disabled={qty === 0}
+                    size="sm"
+                    variant="outline"
+                    onClick={() => removeItem({ name: menu.name, price: menu.price })}
+                    disabled={qty === 0}
                     >
-                      –
+                    –
                     </Button>
                     <span className="w-6 text-center">{qty}</span>
                     <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => addItem({ name: menu.name, price: menu.price, qty: 1 })}
+                    size="sm"
+                    variant="outline"
+                    onClick={() => addItem({ name: menu.name, price: menu.price, qty: 1 })}
                     >
-                      +
+                    +
                     </Button>
-                  </div>
+                </div>
                 </div>
               </CardContent>
-            </Card>
-          );
-        })}
-      </div>
+              </Card>
+            );
+            })}
+        </div>
+      </TabsContent>
+      <TabsContent value="marts">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+            {MART_LIST.map(menu => {
+            const qty = getQty(menu.name, menu.price);
+            return (
+              <Card key={menu.name} className="flex flex-col w-full max-w-sm">
+              <div className="flex justify-center items-center">
+                    <Image
+                    src={menu.image}
+                    alt={menu.name}
+                    width={120}
+                    height={80}
+                    className="object-cover rounded-t-lg"
+                    />
+              </div>
+              <CardContent className="flex-1 flex flex-col justify-between">
+                <div>
+                <h3 className="text-lg font-semibold">{menu.name}</h3>
+                <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                    <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => removeItem({ name: menu.name, price: menu.price })}
+                    disabled={qty === 0}
+                    >
+                    –
+                    </Button>
+                    <span className="w-6 text-center">{qty}</span>
+                    <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => addItem({ name: menu.name, price: menu.price, qty: 1 })}
+                    >
+                    +
+                    </Button>
+                </div>
+                </div>
+              </CardContent>
+              </Card>
+            );
+            })}
+        </div>
+      </TabsContent>
+      <TabsContent value="events">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+            {EVENT_LIST.map(menu => {
+            const qty = getQty(menu.name, menu.price);
+            return (
+              <Card key={menu.name} className="flex flex-col w-full max-w-sm">
+              <div className="flex justify-center items-center">
+                    <Image
+                    src={menu.image}
+                    alt={menu.name}
+                    width={120}
+                    height={80}
+                    className="object-cover rounded-t-lg"
+                    />
+              </div>
+              <CardContent className="flex-1 flex flex-col justify-between">
+                <div>
+                <h3 className="text-lg font-semibold">{menu.name}</h3>
+                <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
+                </div>
+                <div className="mt-4 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                    <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => removeItem({ name: menu.name, price: menu.price })}
+                    disabled={qty === 0}
+                    >
+                    –
+                    </Button>
+                    <span className="w-6 text-center">{qty}</span>
+                    <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => addItem({ name: menu.name, price: menu.price, qty: 1 })}
+                    >
+                    +
+                    </Button>
+                </div>
+                </div>
+              </CardContent>
+              </Card>
+            );
+            })}
+        </div>
+      </TabsContent>
+    </Tabs>
+      
 
       {/* 총액 및 다음 버튼 */}
       <div className="flex flex-col sm:flex-row items-center justify-between">
