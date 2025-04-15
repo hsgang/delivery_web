@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useOrder } from "../context/OrderContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,12 +15,9 @@ import {
     FormMessage,
   } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
-import { isValid } from "zod";
 import {
     AlertDialog,
     AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -36,7 +32,6 @@ phone: string;
 
 export default function ConfirmPage() {
   const { region, items, clearItems } = useOrder();
-  const [phone, setPhone] = useState("");
 
   // react-hook-form 세팅
   const form = useForm<FormValues>({
@@ -51,19 +46,8 @@ export default function ConfirmPage() {
   const productTotal = items.reduce((sum, i) => sum + i.price * i.qty, 0);
   const deliveryFee = 3000;
   const total = productTotal + deliveryFee;
-  
-    // SMS 메시지 생성 함수
-  const makeMessage = (phone: string) => {
-    const body = [
-      `배송 지역: ${region}`,
-      ...items.map(i => `${i.name} x${i.qty} (${i.price.toLocaleString()}원)`),
-      `배송비: ${deliveryFee.toLocaleString()}원`,
-      `총 결제액: ${total.toLocaleString()}원`,
-    ].join("\n");
-    return `sms:${phone}?body=${encodeURIComponent(body)}`;
-  };
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = () => {
     // SMS 앱 호출
     //window.location.href = makeMessage(data.phone);
     // 주문 초기화
