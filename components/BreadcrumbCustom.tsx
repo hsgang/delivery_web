@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const STEPS = [
-  { label: "소개", href: "/" },
+  { label: "안내", href: "/" },
   { label: "지점 선택", href: "/region" },
-  { label: "메뉴 선택", href: "/menu" },
+  { label: "물품 선택", href: "/menu" },
   { label: "확인", href: "/confirm" },
 ];
 

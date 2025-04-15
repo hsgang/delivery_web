@@ -31,8 +31,10 @@ const MART_LIST: {
 { name: "생수2",   price: 1000, image: "/images/tangsu.png" },
 { name: "생수3",   price: 1000, image: "/images/bokbab.png" },
 { name: "생수4",  price: 1000, image: "/images/zzambong.png" },
-{ name: "생수5",  price: 1000, image: "/images/chicken.png" },
-{ name: "생수6",  price: 1000, image: "/images/chicken.png" },
+{ name: "생수5",   price: 1000, image: "/images/zazang.png" },
+{ name: "생수6",   price: 1000, image: "/images/tangsu.png" },
+{ name: "생수7",   price: 1000, image: "/images/bokbab.png" },
+{ name: "생수8",  price: 1000, image: "/images/zzambong.png" },
 ];
 
 const EVENT_LIST: { 
@@ -42,10 +44,6 @@ const EVENT_LIST: {
 }[] = [
 { name: "이벤트1", price: 1000, image: "/images/zazang.png" },
 { name: "이벤트2", price: 3000, image: "/images/tangsu.png" },
-{ name: "이벤트3", price: 1000, image: "/images/bokbab.png" },
-{ name: "이벤트4", price: 1000, image: "/images/zzambong.png" },
-{ name: "이벤트5", price: 2000, image: "/images/chicken.png" },
-{ name: "이벤트6", price: 2000, image: "/images/chicken.png" },
 ];
 
 export default function MenuPage() {
@@ -68,9 +66,9 @@ export default function MenuPage() {
 
     <Tabs defaultValue="foods" className="w-full max-w-4xl">
       <TabsList className="w-full justify-center">
-        <TabsTrigger value="foods" className="text-xl font-bold">음식</TabsTrigger>
-        <TabsTrigger value="marts"className="text-xl font-bold">물품</TabsTrigger>
-        <TabsTrigger value="events" className="text-xl font-bold">이벤트</TabsTrigger>
+        <TabsTrigger value="foods" className="text-lg font-bold">음식</TabsTrigger>
+        <TabsTrigger value="marts"className="text-lg font-bold">물품</TabsTrigger>
+        <TabsTrigger value="events" className="text-lg font-bold">이벤트</TabsTrigger>
       </TabsList>
       <TabsContent value="foods">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
@@ -89,10 +87,10 @@ export default function MenuPage() {
               </div>
               <CardContent className="flex-1 flex flex-col justify-between">
                 <div>
-                <h3 className="text-lg font-semibold">{menu.name}</h3>
+                <h3 className="text-lg font-semibold ">{menu.name}</h3>
                 <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
                 </div>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-center">
                 <div className="flex items-center space-x-2">
                     <Button
                     size="sm"
@@ -138,7 +136,7 @@ export default function MenuPage() {
                 <h3 className="text-lg font-semibold">{menu.name}</h3>
                 <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
                 </div>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-center">
                 <div className="flex items-center space-x-2">
                     <Button
                     size="sm"
@@ -184,7 +182,7 @@ export default function MenuPage() {
                 <h3 className="text-lg font-semibold">{menu.name}</h3>
                 <p className="mt-1 text-gray-600">{menu.price.toLocaleString()}원</p>
                 </div>
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex items-center justify-center">
                 <div className="flex items-center space-x-2">
                     <Button
                     size="sm"

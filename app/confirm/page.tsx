@@ -58,7 +58,7 @@ export default function ConfirmPage() {
     <div className="container mx-auto px-4 py-6 flex flex-col items-center">
         <BreadcrumbCustom />
         <Separator className="mb-6"/>
-      <h2 className="text-2xl font-bold mb-6">최종 주문 내역 확인</h2>
+      <h2 className="text-2xl font-bold mb-6">주문 내역 확인</h2>
 
       <Card className="w-full max-w-lg mb-6">
         <CardContent>
