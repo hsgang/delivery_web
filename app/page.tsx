@@ -23,11 +23,16 @@ export default function IntroPage() {
           className="text-xl font-bold"
           onClick={() => router.push("/region")}
         >
-          문자 주문 하기
+          웹 주문 하기
         </Button>
         <Button
           onClick={() => {
-            window.location.href = "/";
+            const phoneNumber = process.env.NEXT_PUBLIC_ORDER_PHONE_NUMBER;
+            if(phoneNumber) {
+              window.location.href = `tel:${phoneNumber}`;
+            } else {
+              alert("전화번호가 설정되지 않았습니다.");
+            }
           }}
           className="text-xl font-bold"
         >
